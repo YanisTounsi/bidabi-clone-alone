@@ -7,9 +7,9 @@ from aiohttp import ClientSession, ClientTimeout
 API_URL = "https://world.openfoodfacts.org/cgi/search.pl"
 HEADERS = {"User-Agent": "MyAwesomeApp/1.0"}
 
-OUTPUT_DIR = "data"
+OUTPUT_DIR = "data/raw"
 
-CATEGORY = "sugar" #"bread", "milk", "champagnes", "butter" 
+CATEGORY = "butter" #"bread", "milk", "champagnes", "butter" 
 TARGET_COUNT = 180
 PAGE_SIZE = 100
 MAX_PAGES = 50
@@ -74,7 +74,7 @@ async def fetch_page(session, category, page, page_size, sem):
 # -------------------------
 # Async image download
 # -------------------------
-async def download_image(session, url, image_id, sem, folder="data/images/sugar"):
+async def download_image(session, url, image_id, sem, folder=f"data/raw/images/{CATEGORY}"):
     if not url:
         return
 
