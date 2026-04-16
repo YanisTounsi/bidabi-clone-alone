@@ -1,46 +1,46 @@
-# bidabi-clone-adapt-create
-# BIDABI : Clone → Adapt → Create
+# bidabi-clone-alone
 
-Dépôt pédagogique du cours **Big Data and Business Intelligence (BIDABI)**.  
-Ce projet a pour objectif d’initier les étudiants au travail avec du code open‑source, à l’adaptation de projets existants et à la création de leur propre jeu de données d’images.
+Pipeline complet de classification d'images de produits alimentaires avec ResNet-18.
 
-## 🎯 Objectif du dépôt
-Ce dépôt sert de **plateforme d’apprentissage** où les étudiants réalisent un cycle complet de travail en data et en machine learning :
+## Description
 
-- cloner un projet open‑source depuis GitHub
-- analyser sa structure, ses dépendances et son fonctionnement
-- adapter le code à un nouveau contexte
-- créer un jeu de données d’images personnalisé
-- intégrer ce jeu de données dans un pipeline ML existant
+Ce projet collecte des images de produits alimentaires depuis OpenFoodFacts, entraîne un modèle de classification ResNet-18 et évalue ses performances.
 
-L’objectif est de reproduire des situations réelles rencontrées par les ingénieurs data et ML lorsqu’ils doivent réutiliser et modifier du code provenant d’autres développeurs.
+## Structure du projet
 
-## 🎓 Public visé
-Ce projet est destiné aux étudiants du cours **BIDABI**, notamment ceux qui s’intéressent à :
+- src/asyscrapper.py : collecte des données depuis OpenFoodFacts
+- src/classificator.py : pipeline d'entraînement ResNet-18
+- src/data_loader.py : chargement des données
+- data/raw/ : dataset brut versionné avec DVC
+- best_model_resnet18_finetuned.pth.dvc : modèle versionné avec DVC
 
-- l’apprentissage automatique
-- l’ingénierie des données
-- la reproductibilité des expériences
-- l’utilisation de GitHub et des projets open‑source
+## Installation
 
-## 🧩 Contenu du dépôt
-Le dépôt inclura :
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cpu
 
-- des exemples de code à analyser et adapter
-- un modèle de structure pour le jeu de données
-- des consignes pour les travaux pratiques
-- des instructions pour exécuter et modifier le projet
+## Collecter les données
 
-## 🛠️ Compétences développées
-Les étudiants apprendront à :
+Dans src/asyscrapper.py, changer CATEGORY puis lancer :
+python src/asyscrapper.py
 
-- lire et comprendre du code écrit par d’autres
-- manipuler des dépôts GitHub
-- concevoir et organiser un jeu de données d’images
-- intégrer des données dans un pipeline ML
-- documenter leur travail de manière claire et reproductible
+## Restaurer les données avec DVC
 
-## 📄 Licence et usage
-Ce dépôt est destiné **exclusivement à des fins pédagogiques** dans le cadre du cours BIDABI.  
-Le code et les ressources peuvent être simplifiés ou modifiés pour faciliter l’apprentissage.
+dvc pull
 
+## Lancer l'entraînement
+
+python src/classificator.py
+
+## Versions
+
+- v1.0 : Version initiale du projet
+- v2.0 : Scrapper corrigé et données RAW collectées
+- v2.1 : Dataset RAW versionné avec DVC
+- v3.0 : Pipeline d'entraînement ResNet-18 complet
+
+## Auteur
+
+YanisTounsi
